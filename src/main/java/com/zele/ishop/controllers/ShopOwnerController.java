@@ -44,7 +44,7 @@ public class ShopOwnerController {
         return shopOwnerService.shopOwnerLogin(request);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/update")
     public ResponseEntity<UserDto> updateShopOwner(
             @PathVariable Long id,
             @RequestBody UserUpdateRequest request
@@ -53,7 +53,7 @@ public class ShopOwnerController {
         return shopOwnerService.updateShopOwner(request, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/delete")
     public ResponseEntity<Void> deleteShopOwner(@PathVariable Long id) {
         return shopOwnerService.deleteShopOwner(id);
     }

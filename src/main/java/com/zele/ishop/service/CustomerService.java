@@ -1,9 +1,6 @@
 package com.zele.ishop.service;
 
-import com.zele.ishop.dto.user.UserDto;
-import com.zele.ishop.dto.user.UserLoginRequest;
-import com.zele.ishop.dto.user.UserRegisterRequest;
-import com.zele.ishop.dto.user.UserUpdateRequest;
+import com.zele.ishop.dto.user.*;
 import com.zele.ishop.entity.Customer;
 import com.zele.ishop.mapper.CustomerMapper;
 import com.zele.ishop.repository.CustomerRepository;
@@ -27,7 +24,7 @@ public class CustomerService {
 
     public ResponseEntity<UserDto> getCustomer(Long id) {
         var customer = customerRepository.findById(id).orElse(null);
-        if (customer == null) {ResponseEntity.status(HttpStatus.NOT_FOUND).build();}
+        if (customer == null) {return ResponseEntity.status(HttpStatus.NOT_FOUND).build();}
         return ResponseEntity.status(HttpStatus.OK).body(customerMapper.toDto(customer));
     }
 
@@ -39,6 +36,9 @@ public class CustomerService {
         ) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(customerMapper.toDto(customer));
         }
+        System.out.println(customer);
+        System.out.println(request);
+        System.out.println(customerRepository.findByEmail(request.getEmail()));
         customerRepository.save(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(customerMapper.toDto(customer));
     }
@@ -62,6 +62,15 @@ public class CustomerService {
         var customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {return ResponseEntity.status(HttpStatus.NOT_FOUND).build();}
         customerRepository.delete(customer);
+        return ResponseEntity.status(HttpStatus.OK).body(customerMapper.toDto(customer));
+    }
+
+    public ResponseEntity<UserDto> changePassword(UserChangePasswordRequest request, Long id) {
+        var customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {return ResponseEntity.status(HttpStatus.NOT_FOUND).build();}
+        if (!request.getOldPassword().equals(customer.getPassword())) {return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();}
+        customer.setPassword(request.getNewPassword());
+        customerRepository.save(customer);
         return ResponseEntity.status(HttpStatus.OK).body(customerMapper.toDto(customer));
     }
 
