@@ -1,4 +1,4 @@
-package com.zele.ishop.dto.shopowner;
+package com.zele.ishop.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -11,9 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ShopOwnerDto {
-    private Long id;
-    private String username;
-    private String email;
-//    private List<ProductDto> products;
+public class UserChangePasswordRequest {
+    private String oldPassword;
+    private String newPassword;
 }

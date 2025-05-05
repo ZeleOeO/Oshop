@@ -3,7 +3,7 @@ package com.zele.ishop.service;
 
 import com.zele.ishop.dto.product.CreateProductRequest;
 import com.zele.ishop.dto.product.ProductDto;
-import com.zele.ishop.dto.shopowner.ShopOwnerDto;
+import com.zele.ishop.dto.user.UserDto;
 import com.zele.ishop.dto.user.*;
 import com.zele.ishop.mapper.ProductMapper;
 import com.zele.ishop.repository.ProductRepository;
@@ -26,17 +26,17 @@ public class ShopOwnerService {
     private ShopOwnerRepository shopOwnerRepository;
     private ShopOwnerMapper shopOwnerMapper;
 
-    public List<ShopOwnerDto> getAllShopOwners(String sort) {
+    public List<UserDto> getAllShopOwners(String sort) {
         return shopOwnerRepository.findAll(Sort.by(sort)).stream().map(shopOwnerMapper::toDto).toList();
     }
 
-    public ResponseEntity<ShopOwnerDto> getShopOwner(Long shopOwnerId) {
+    public ResponseEntity<UserDto> getShopOwner(Long shopOwnerId) {
         var shopOwner = shopOwnerRepository.findById(shopOwnerId).orElse(null);
         if (shopOwnerRepository.findById(shopOwnerId).isEmpty()) {return ResponseEntity.status(HttpStatus.NOT_FOUND).build();}
         return ResponseEntity.status(HttpStatus.OK).body(shopOwnerMapper.toDto(shopOwner));
     }
 
-    public ResponseEntity<ShopOwnerDto> registerShopOwner(RegisterShopOwnerRequest request) {
+    public ResponseEntity<UserDto> registerShopOwner(UserRegisterRequest request) {
         var shopOwner = shopOwnerMapper.toEntity(request);
         if (
                 shopOwnerRepository.findByEmail(shopOwner.getEmail()) != null || shopOwnerRepository.findByUsername(shopOwner.getUsername()) != null
@@ -45,7 +45,7 @@ public class ShopOwnerService {
         return ResponseEntity.status(HttpStatus.CREATED).body(shopOwnerMapper.toDto(shopOwner));
     }
 
-    public ResponseEntity<ShopOwnerDto> updateShopOwner(UserUpdateRequest request, Long shopOwnerId) {
+    public ResponseEntity<UserDto> updateShopOwner(UserUpdateRequest request, Long shopOwnerId) {
         var shopOwner = shopOwnerRepository.findById(shopOwnerId).orElse(null);
         if (shopOwner == null) {return ResponseEntity.status(HttpStatus.NOT_FOUND).build();}
         shopOwnerMapper.update(request, shopOwner);
@@ -60,7 +60,7 @@ public class ShopOwnerService {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    public ResponseEntity<Void> changePassword(Long shopOwnerId, ShopOwnerChangePasswordRequest request) {
+    public ResponseEntity<Void> changePassword(Long shopOwnerId, UserChangePasswordRequest request) {
         var shopOwner = shopOwnerRepository.findById(shopOwnerId).orElse(null);
         if (shopOwner == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -74,7 +74,7 @@ public class ShopOwnerService {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    public ResponseEntity<ShopOwnerDto> shopOwnerLogin(
+    public ResponseEntity<UserDto> shopOwnerLogin(
              UserLoginRequest request
     ) {
         var shopOwner = shopOwnerRepository.findByUsername(request.getUsername());
@@ -83,7 +83,7 @@ public class ShopOwnerService {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(shopOwnerMapper.toDto(shopOwner));
     }
 
-    public ResponseEntity<ProductDto> addProduct(
+    public ResponseEntity<ProductDto> uploadProduct(
             Long shopOwnerId,
             CreateProductRequest request
     ) {

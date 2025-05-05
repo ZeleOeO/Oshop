@@ -2,7 +2,7 @@ package com.zele.ishop.controllers;
 
 import com.zele.ishop.dto.product.CreateProductRequest;
 import com.zele.ishop.dto.product.ProductDto;
-import com.zele.ishop.dto.shopowner.ShopOwnerDto;
+import com.zele.ishop.dto.user.UserDto;
 import com.zele.ishop.dto.user.*;
 import com.zele.ishop.service.ShopOwnerService;
 import lombok.AllArgsConstructor;
@@ -19,33 +19,33 @@ public class ShopOwnerController {
     private final ShopOwnerService shopOwnerService;
 
     @GetMapping("/all")
-    public List<ShopOwnerDto> getAllShopOwners(@RequestParam(required = false, defaultValue = "",name = "sort") String sort) {
+    public List<UserDto> getAllShopOwners(@RequestParam(required = false, defaultValue = "",name = "sort") String sort) {
         if(!Set.of("username", "email", "password").contains(sort)) {sort="username";}
         return shopOwnerService.getAllShopOwners(sort);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShopOwnerDto> getShopOwnerById(@PathVariable Long id) {
+    public ResponseEntity<UserDto> getShopOwnerById(@PathVariable Long id) {
         return shopOwnerService.getShopOwner(id);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<ShopOwnerDto> createShopOwner(
-            @RequestBody RegisterShopOwnerRequest request
+    public ResponseEntity<UserDto> createShopOwner(
+            @RequestBody UserRegisterRequest request
     ) {
         return shopOwnerService.registerShopOwner(request);
     }
 
 
     @PostMapping("/login")
-    public ResponseEntity<ShopOwnerDto> loginShopOwner(
+    public ResponseEntity<UserDto> loginShopOwner(
             @RequestBody UserLoginRequest request
     ) {
         return shopOwnerService.shopOwnerLogin(request);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ShopOwnerDto> updateShopOwner(
+    public ResponseEntity<UserDto> updateShopOwner(
             @PathVariable Long id,
             @RequestBody UserUpdateRequest request
     )
@@ -61,7 +61,7 @@ public class ShopOwnerController {
     @PostMapping("/{id}/change-password")
     public ResponseEntity<Void> changePassword(
             @PathVariable Long id,
-            @RequestBody ShopOwnerChangePasswordRequest request
+            @RequestBody UserChangePasswordRequest request
     ) {
         return shopOwnerService.changePassword(id, request);
     }
@@ -71,7 +71,7 @@ public class ShopOwnerController {
             @PathVariable Long id,
             @RequestBody CreateProductRequest request
     ) {
-        return shopOwnerService.addProduct(id, request);
+        return shopOwnerService.uploadProduct(id, request);
     }
 
     @GetMapping("/{id}/all-products")

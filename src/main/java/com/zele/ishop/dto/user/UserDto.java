@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ShopOwnerChangePasswordRequest {
-    private String oldPassword;
-    private String newPassword;
+public class UserDto {
+    private Long id;
+    private String username;
+    private String email;
+//    private List<ProductDto> products;
 }
