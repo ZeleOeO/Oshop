@@ -3,7 +3,6 @@ package com.zele.ishop.mapper;
 import com.zele.ishop.dto.user.UserDto;
 import com.zele.ishop.dto.user.UserRegisterRequest;
 import com.zele.ishop.dto.user.UserUpdateRequest;
-import com.zele.ishop.entity.ShopOwner;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

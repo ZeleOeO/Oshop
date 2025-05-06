@@ -21,10 +21,9 @@ public class Product {
     private int quantity;
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="shop_owner_id")
-    private ShopOwner shopOwner;
+    @ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="shop_owner_id")
+    private User shopOwner;
 
-    @ManyToMany(mappedBy = "cart")
-    private Set<Customer> customers;
+    @OneToMany(mappedBy = "product")
+    private Set<CartItem> cartItems;
 }

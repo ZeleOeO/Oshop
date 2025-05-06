@@ -7,7 +7,6 @@ import com.zele.ishop.dto.user.UserDto;
 import com.zele.ishop.dto.user.*;
 import com.zele.ishop.mapper.ProductMapper;
 import com.zele.ishop.repository.ProductRepository;
-import com.zele.ishop.repository.ShopOwnerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;

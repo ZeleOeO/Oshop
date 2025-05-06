@@ -5,7 +5,6 @@ import com.zele.ishop.dto.user.*;
 import com.zele.ishop.entity.Customer;
 import com.zele.ishop.mapper.CustomerMapper;
 import com.zele.ishop.mapper.ProductMapper;
-import com.zele.ishop.repository.CustomerRepository;
 import com.zele.ishop.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;

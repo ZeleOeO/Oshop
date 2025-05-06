@@ -5,7 +5,6 @@ import com.zele.ishop.dto.product.ProductDto;
 import com.zele.ishop.entity.Product;
 import com.zele.ishop.mapper.ProductMapper;
 import com.zele.ishop.repository.ProductRepository;
-import com.zele.ishop.repository.ShopOwnerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
