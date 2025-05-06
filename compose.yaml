@@ -2,7 +2,7 @@ services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=oshop_db'
+      - 'POSTGRES_DB=ishop_db'
       - 'POSTGRES_PASSWORD=password'
       - 'POSTGRES_USER=zele'
     ports:
