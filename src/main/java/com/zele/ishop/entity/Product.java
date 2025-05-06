@@ -3,7 +3,7 @@ package com.zele.ishop.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -26,5 +26,5 @@ public class Product {
     private ShopOwner shopOwner;
 
     @ManyToMany(mappedBy = "cart")
-    private List<Customer> customers;
+    private Set<Customer> customers;
 }

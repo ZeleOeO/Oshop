@@ -1,14 +1,19 @@
 package com.zele.ishop.service;
 
+import com.zele.ishop.dto.product.ProductDto;
 import com.zele.ishop.dto.user.*;
 import com.zele.ishop.entity.Customer;
 import com.zele.ishop.mapper.CustomerMapper;
+import com.zele.ishop.mapper.ProductMapper;
 import com.zele.ishop.repository.CustomerRepository;
+import com.zele.ishop.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +22,8 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
+    private final ProductMapper productMapper;
+    private final ProductRepository productRepository;
 
     public List<UserDto> getCustomers() {
         return customerRepository.findAll().stream().map(customerMapper::toDto).toList();
@@ -74,4 +81,23 @@ public class CustomerService {
         return ResponseEntity.status(HttpStatus.OK).body(customerMapper.toDto(customer));
     }
 
+    @Transactional()
+    public List<ProductDto> getCart(Long customerId) {
+        var customer = customerRepository.findByIdWithCart(customerId).orElse(null);
+        if (customer==null) {return List.of();}
+        return new ArrayList<>(customer.getCart())
+                .stream()
+                .map(productMapper::toDto)
+                .toList();
+    }
+
+    @Transactional
+    public ResponseEntity<ProductDto> addProductToCart(Long customerId, Long productId) {
+        var customer = customerRepository.findById(customerId).orElse(null);
+        if (customer==null) {return ResponseEntity.status(HttpStatus.NOT_FOUND).build();}
+        var product = productRepository.findById(productId).orElse(null);
+        customer.getCart().add(product);
+        customerRepository.save(customer);
+        return ResponseEntity.status(HttpStatus.OK).body(productMapper.toDto(product));
+    }
 }

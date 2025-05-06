@@ -17,6 +17,7 @@ public class ShopOwner {
     private String username;
     private String email;
     private String password;
+    private Double accountBalance;
 
     @OneToMany(mappedBy = "shopOwner")
     private List<Product> product;

@@ -7,4 +7,5 @@ public class UserRegisterRequest {
     private String username;
     private String email;
     private String password;
+    private Double accountBalance;
 }

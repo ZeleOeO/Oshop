@@ -1,5 +1,6 @@
 package com.zele.ishop.controllers;
 
+import com.zele.ishop.dto.product.ProductDto;
 import com.zele.ishop.dto.user.*;
 import com.zele.ishop.service.CustomerService;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -48,5 +50,18 @@ public class CustomerController {
     @PostMapping("/{id}/change-password")
     public ResponseEntity<UserDto> changePassword(@PathVariable long id, @RequestBody UserChangePasswordRequest request) {
         return customerService.changePassword(request, id);
+    }
+
+    @GetMapping("/{id}/cart")
+    public List<ProductDto> getCustomerCart(@PathVariable long id) {
+        return customerService.getCart(id);
+    }
+
+    @PostMapping("/{customerId}/cart/add/{productId}")
+    public ResponseEntity<ProductDto> addProductToCart(
+            @PathVariable Long customerId,
+            @PathVariable Long productId
+    ) {
+        return customerService.addProductToCart(customerId, productId);
     }
 }

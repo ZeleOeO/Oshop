@@ -15,6 +15,7 @@ public interface ShopOwnerMapper {
     @Mapping(source = "username", target = "username")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
+    @Mapping(source = "accountBalance", target = "accountBalance")
     ShopOwner toEntity(UserRegisterRequest shopOwnerRequest);
 
     void update(UserUpdateRequest shopOwnerRequest, @MappingTarget ShopOwner shopOwner);

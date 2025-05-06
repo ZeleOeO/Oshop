@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class UserUpdateRequest {
     private String username;
     private String email;
+    private Double accountBalance;
 }

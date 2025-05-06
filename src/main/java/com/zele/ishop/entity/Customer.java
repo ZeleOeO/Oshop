@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -16,16 +16,17 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
-   private String username;
-   private String email;
-   private String password;
+    private Long id;
+    private String username;
+    private String email;
+    private String password;
+    private Double accountBalance;
 
-   @ManyToMany
+   @ManyToMany(fetch = FetchType.LAZY)
    @JoinTable(
            name = "customer_product",
            joinColumns = @JoinColumn(name = "customer_id"),
            inverseJoinColumns = @JoinColumn(name="product_id")
    )
-   private List<Product> cart;
+   private Set<Product> cart;
 }
