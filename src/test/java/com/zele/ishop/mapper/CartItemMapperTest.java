@@ -34,4 +34,11 @@ class CartItemMapperTest {
         assertEquals(cartItemDto.getUserName(), user.getName());
         assertEquals(cartItemDto.getProductName(), product.getName());
     }
+
+    @Test
+    public void testMapperWhenUserIsNull() {
+       CartItemDto cartItemDto = mapper.toCartItemDto(null);
+       assertEquals("", cartItemDto.getUserName());
+       assertEquals("", cartItemDto.getProductName());
+    }
 }
