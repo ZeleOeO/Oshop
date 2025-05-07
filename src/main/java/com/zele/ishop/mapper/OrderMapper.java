@@ -9,6 +9,5 @@ import org.mapstruct.Mapping;
 public interface OrderMapper {
     @Mapping(target = "orderDate", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(source = "order.user.name", target = "userName")
-    @Mapping(source = "totalAmount", target = "totalAmount", numberFormat = "$#.00")
     OrderUserViewDto toOrderUserViewDto(Order order);
 }
