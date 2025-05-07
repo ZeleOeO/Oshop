@@ -1,8 +1,7 @@
 package com.zele.ishop.entity;
 
 public enum Status {
-    PENDING,
-    PROCESSING,
+    PLACED,
     SHIPPED,
     DELIVERED,
     CANCELLED

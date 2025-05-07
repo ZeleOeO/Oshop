@@ -13,7 +13,13 @@ import lombok.NoArgsConstructor;
 public class OrderItem {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private int quantity;
+    private double price;
 
     @ManyToOne() @JoinColumn(name = "orderId")
     private Order order;
+
+    @ManyToOne() @JoinColumn(name = "productId")
+    private Product product;
+
 }
