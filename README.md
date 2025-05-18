@@ -47,7 +47,7 @@ Unfortunately no configured tests in this repo...
 ## Contributing
 Contributions are more than welcome as I've abandoned this project (I don't care about it lk)
 
-### Steps to Contribute
+## Steps to Contribute
 1. Open an issue first so I can like keep track, but if that's too much stress that's fine too
 2. Fork the Repository
 3. Clone your fork
