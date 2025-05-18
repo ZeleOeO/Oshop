@@ -14,7 +14,8 @@ Shop Owner and Customer class interacts with products. <br> A Shop Owner can add
 - Docker
 - **Optional** - API Client (Postman, Yaak, Insominia etc.). You can always use curl
 - **Optional** - Database Management Tool (Dbeaver, Navicat, DataGrip etc.) I think some IDE's come inbuilt with them
-
+- **Optional** - An IDE such as IntelliJ, VSCode, Netbeans
+    
 ## Installation (Will work on both powershell and bash/zsh terminals)
 1. Clone the repository:
    ```bash
@@ -24,8 +25,8 @@ Shop Owner and Customer class interacts with products. <br> A Shop Owner can add
    ```bash
    cd Oshop
    ```   
-4. Open docker if not already running (spring-boot-docker-compose is installed so no need for docker-compose)
-5. Run with
+3. Open docker if not already running (spring-boot-docker-compose is installed so no need for docker-compose)
+4. Run with
    ```bash
    ./mvnw spring-boot:run
    ```
