@@ -44,10 +44,8 @@ Shop Owner and Customer class interacts with products. <br> A Shop Owner can add
 ## Running Tests
 Unfortunately no configured tests in this repo...
 
-## Contributing
-Contributions are more than welcome as I've abandoned this project (I don't care about it lk)
-
 ## Steps to Contribute
+Contributions are more than welcome as I've abandoned this project (I don't care about it lk)
 1. Open an issue first so I can like keep track, but if that's too much stress that's fine too
 2. Fork the Repository
 3. Clone your fork
